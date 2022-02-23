@@ -1,7 +1,7 @@
 #FROM --platform=linux/x86_64 webdevops/apache:ubuntu-18.04
 FROM webdevops/apache:ubuntu-18.04
 
-ARG DOCUMENT_ROOT=false
+ARG FOR_M1=false
 RUN if [ ${FOR_M1} = true ]; then wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/goreplace/releases/download/1.1.2/gr-arm64-linux"; fi
 RUN if [ ${FOR_M1} = true ]; then chmod +x "/usr/local/bin/go-replace"; fi
 RUN if [ ${FOR_M1} = true ]; then "/usr/local/bin/go-replace" --version; fi

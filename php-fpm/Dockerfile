@@ -1,6 +1,6 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-fpm
-# RUN apt-get update && docker-php-ext-install pdo_mysql
+
 ARG PHP_VERSION
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
@@ -24,6 +24,7 @@ RUN set -xe; \
       fi && \
       # Install the zip extension
       docker-php-ext-install zip && \
+      docker-php-ext-install pdo_mysql && \
       php -m | grep -q 'zip' \
 
 ###########################################################################

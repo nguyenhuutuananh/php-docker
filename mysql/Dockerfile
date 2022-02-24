@@ -1,5 +1,4 @@
 ARG MYSQL_VERSION
-#FROM --platform=linux/x86_64 mysql:${MYSQL_VERSION}
 FROM mysql:${MYSQL_VERSION}
 
 #####################################

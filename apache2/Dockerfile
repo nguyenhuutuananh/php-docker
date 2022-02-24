@@ -1,4 +1,3 @@
-#FROM --platform=linux/x86_64 webdevops/apache:ubuntu-18.04
 FROM webdevops/apache:ubuntu-18.04
 
 ARG FOR_M1=false

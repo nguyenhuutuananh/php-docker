@@ -55,6 +55,7 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     fi \
   fi && \
   docker-php-ext-enable xdebug \
+    && touch /var/log/xdebug.log \
 ;fi
 
 # Copy xdebug configuration for remote debugging

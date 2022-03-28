@@ -21,6 +21,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+      - ./php-fpm/custom/custom.ini:/usr/local/etc/php/conf.d/custom.ini
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       - docker-in-docker:/certs/client
     ports:
@@ -44,6 +45,7 @@ services:
       context: ./apache2
       args:
         - FOR_M1=${FOR_M1}
+        - DOCUMENT_ROOT=${WEB_DOCUMENT_ROOT}
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       - ${APACHE_HOST_LOG_PATH}:/var/log/apache2

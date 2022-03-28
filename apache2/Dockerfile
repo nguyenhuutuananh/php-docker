@@ -5,7 +5,9 @@ RUN if [ ${FOR_M1} = true ]; then wget -O "/usr/local/bin/go-replace" "https://g
 RUN if [ ${FOR_M1} = true ]; then chmod +x "/usr/local/bin/go-replace"; fi
 RUN if [ ${FOR_M1} = true ]; then "/usr/local/bin/go-replace" --version; fi
 
-ARG DOCUMENT_ROOT=/var/www/app/public/
+RUN touch /var/log/xdebug.log
+
+ARG DOCUMENT_ROOT=/var/www/
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
 ARG PHP_UPSTREAM_TIMEOUT=60

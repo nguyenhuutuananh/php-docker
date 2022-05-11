@@ -2,3 +2,6 @@
 *.csr
 *.key
 *.pem
+
+# Optional
+*.txt

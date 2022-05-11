@@ -1,6 +1,6 @@
 <VirtualHost *:80>
-    ServerName dmk-dynamic-cp.test
-    ServerAlias *.dmk-dynamic-cp.test
+    ServerName domain.test
+    ServerAlias *.domain.test
 
     RewriteEngine On
     RewriteCond %{HTTPS} !on
@@ -8,8 +8,8 @@
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName dmk-dynamic-cp.test
-    ServerAlias *.dmk-dynamic-cp.test
+    ServerName domain.test
+    ServerAlias *.domain.test
     DocumentRoot /var/www/
     Options Indexes FollowSymLinks
 
@@ -19,14 +19,9 @@
 
     <Directory "/var/www/">
       AllowOverride All
-      <IfVersion < 2.4>
-        Allow from all
-      </IfVersion>
-      <IfVersion >= 2.4>
-        Require all granted
-      </IfVersion>
+      Require all granted
     </Directory>
 
-    ErrorLog /var/log/apache2/error.log
-    CustomLog /var/log/apache2/access.log combined
+    ErrorLog /var/log/apache2/domain.test_error.log
+    CustomLog /var/log/apache2/domain.test_access.log combined
 </VirtualHost>

@@ -39,6 +39,28 @@ services:
       - FAKETIME=${PHP_FPM_FAKETIME}
     networks:
       - backend
+  ### PHP Worker ############################################
+  php-worker:
+    build:
+      context: ./php-worker
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - INSTALL_IMAGEMAGICK=${PHP_WORKER_INSTALL_IMAGEMAGICK}
+        - INSTALL_MEMCACHED=${PHP_WORKER_INSTALL_MEMCACHED}
+        - INSTALL_FFMPEG=${PHP_WORKER_INSTALL_FFMPEG}
+        - INSTALL_REDIS=${PHP_WORKER_INSTALL_REDIS}
+        - PUID=${PHP_WORKER_PUID}
+        - PGID=${PHP_WORKER_PGID}
+        - IMAGEMAGICK_VERSION=${PHP_WORKER_IMAGEMAGICK_VERSION}
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+      - ./php-worker/supervisord.d:/etc/supervisord.d
+    depends_on:
+      - php-fpm
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
+    networks:
+      - backend
   ### Apache Server ########################################
   apache2:
     build:

@@ -1,9 +1,9 @@
-ARG PHP_VERSION
-FROM php:${PHP_VERSION}-fpm
+ARG PHP_FPM_VERSION
+FROM php:${PHP_FPM_VERSION}-fpm
 
 LABEL maintainer="Tuan Anh Nguyen <nguyenhuutuananh2@gmail.com>"
 
-ARG PHP_VERSION
+ARG PHP_FPM_VERSION
 ARG NON_ROOT_USER=php-docker
 # Start as root
 USER root
@@ -32,7 +32,7 @@ RUN set -xe; \
       #
       # commands based on laradock
       libzip-dev zip unzip && \
-      if [ ${PHP_VERSION} = "7.3" ] || [ ${PHP_VERSION} = "7.4" ] || [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
+      if [ ${PHP_FPM_VERSION} = "7.3" ] || [ ${PHP_FPM_VERSION} = "7.4" ] || [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
         docker-php-ext-configure zip; \
       else \
         docker-php-ext-configure zip --with-libzip; \

@@ -1,9 +1,9 @@
-ARG PHP_VERSION
-FROM php:${PHP_VERSION}-alpine
+ARG PHP_WORKER_VERSION
+FROM php:${PHP_WORKER_VERSION}-alpine
 
 LABEL maintainer="Tuan Anh Nguyen <nguyenhuutuananh2@gmail.com>"
 
-ARG PHP_VERSION
+ARG PHP_WORKER_VERSION
 ARG NON_ROOT_USER=php-docker
 
 RUN apk --update add wget \
@@ -154,7 +154,7 @@ ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 #--------------------------------------------------------------------------
 #
 
-RUN php -v | head -n 1 | grep -q "PHP ${PHP_VERSION}."
+RUN php -v | head -n 1 | grep -q "PHP ${PHP_WORKER_VERSION}."
 
 #
 #--------------------------------------------------------------------------
